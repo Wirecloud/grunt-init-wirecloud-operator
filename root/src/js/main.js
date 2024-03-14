@@ -6,13 +6,24 @@
  * Licensed under the {%= licenses.join(', ') %} license{%= licenses.length === 1 ? '' : 's' %}.
  */
 
+/* exported {%= entrypoint %} */
+
 (function () {
 
     "use strict";
 
-    MashupPlatform.prefs.registerCallback(function (new_preferences) {
+    class {%= entrypoint %} {
+        constructor(MashupPlatform, extra) {
+            this.MashupPlatform = MashupPlatform;
 
-    }.bind(this));
+            MashupPlatform.prefs.registerCallback(function (new_preferences) {
+
+            }.bind(this));
+        }
+    }
+
+    // We define the class as part of the window object so that it can be instantiated by Wirecloud
+    window.{%= entrypoint %} = {%= entrypoint %};
 
     /* test-code */
 
